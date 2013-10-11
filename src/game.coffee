@@ -1,4 +1,4 @@
-class Game
+class Asteroids.Game
   @DIM_X = 900
   @DIM_Y = 900
 
@@ -7,6 +7,14 @@ class Game
     @ship = null
     @asteroids = []
     @bullets = []
+
+  start: () =>
+    @_bindKeyHandlers()
+    step: (timestamp) ->
+      @_step()
+      requestAnimationFrame(step)
+
+    requestAnimationFrame(step)
 
   _drawAllTheThings: () ->
     @ctx.clearRect(0, 0, @DIM_X, @DIM_Y)
@@ -39,13 +47,12 @@ class Game
     @_moveAllTheThings()
     @_drawAllTheThings()
 
-  start: () =>
-    @_bindKeyHandlers()
-    step: (timestamp) ->
-      @_step()
-      requestAnimationFrame(step)
-
-    requestAnimationFrame(step)
-
   _addAsteroids: (numAsteroids) ->
+    while numAsteroids -= 1
+      @asteroids.push(Asteroids.Asteroid.randomAsteroid(Asteroids.Game.DIM_X, Asteroids.Game.DIM_Y))
 
+  _bindKeyHandlers: () =>
+    key("w", => @ship.power({ x: 5.0, y: 5.0 }))
+    key("a", => @ship.power({ x: 5.0, y: 5.0 }))
+    key("d", => @ship.power({ x: 5.0, y: 5.0 }))
+    key("space", => @bullets.push(@ship.fireBullet()))

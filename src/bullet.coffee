@@ -1,4 +1,4 @@
-class Bullet extends MovingObject
+class Asteroids.Bullet extends Asteroids.MovingObject
   @RADIUS = 5
   @COLOR = "yellow"
   @VELOCITY = { x: 10, y: 10 }

@@ -1,4 +1,4 @@
-class Ship extends MovingObject
+class Asteroids.Ship extends Asteroids.MovingObject
   @RADIUS = 10
   @COLOR = "red"
 
@@ -36,4 +36,4 @@ class Ship extends MovingObject
     @direction += dir
 
   fireBullet: () ->
-    new Bullet({ x: @pos.x, y: @pos.y }, @dir)
+    new Asteroids.Bullet({ x: @pos.x, y: @pos.y }, @dir)
